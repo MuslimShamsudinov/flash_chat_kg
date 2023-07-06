@@ -67,56 +67,36 @@ class _HomePagesState extends State<HomePages> {
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25))),
           ),
-          body: Center(
-            child: body[_currentIndex],
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (int newIndex) {
-              setState(() {
-                _currentIndex = newIndex;
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(label: 'home', icon: Icon(EvaIcons.home)),
-              BottomNavigationBarItem(
-                  label: 'camera', icon: Icon(EvaIcons.cameraOutline)),
-              BottomNavigationBarItem(
-                label: 'Phone',
-                icon: Icon(EvaIcons.phoneCallOutline),
-              )
-            ],
-          ),
-          // TabBarView(children: [
-          //   Expanded(
-          //     child: ListView.builder(
-          //         padding: EdgeInsets.only(),
-          //         physics: BouncingScrollPhysics(
-          //             decelerationRate: ScrollDecelerationRate.fast),
-          //         itemCount: 10,
-          //         itemBuilder: (context, index) {
-          //           return ChatCard();
-          //         }),
-          //   ),
-          //   Center(
-          //     child: Text(
-          //       '⚡Status',
-          //       style: TextStyle(
-          //           fontSize: 30,
-          //           color: Colors.blue,
-          //           fontWeight: FontWeight.bold),
-          //     ),
-          //   ),
-          //   Center(
-          //     child: Text(
-          //       '⚡Calls',
-          //       style: TextStyle(
-          //           fontSize: 30,
-          //           color: Colors.blue,
-          //           fontWeight: FontWeight.bold),
-          //     ),
-          //   ),
-          // ]),
+          body: TabBarView(children: [
+            Expanded(
+              child: ListView.builder(
+                  padding: EdgeInsets.only(),
+                  physics: BouncingScrollPhysics(
+                      decelerationRate: ScrollDecelerationRate.fast),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return ChatCard();
+                  }),
+            ),
+            Center(
+              child: Text(
+                '⚡Status',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Center(
+              child: Text(
+                '⚡Calls',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ]),
         ),
       ),
     );

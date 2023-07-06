@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fleshchat/app/Pages/homePage/CHatPage/chat_page.dart';
 import 'package:fleshchat/app/Pages/homePage/home_pages.dart';
 import 'package:fleshchat/app/Pages/modul/usersModuls/userModuls.dart';
 import 'package:fleshchat/app/Pages/widgets/contener_login.dart';
@@ -37,7 +38,14 @@ class _RegisterPageState extends State<RegisterPage> {
         .add(
           userModels.toJson(),
         )
-        .then((value) => print("User Added"))
+        .then((value) => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => chatPage(
+                            urModels: userModels,
+                          )))
+            })
         .catchError((error) => print("Failed to add user: $error"));
     ;
   }
@@ -50,7 +58,6 @@ class _RegisterPageState extends State<RegisterPage> {
             password: passwordController.text,
           )
           .then((value) => {
-                UModels(),
                 nameController.clear(),
                 emailController.clear(),
                 passwordController.clear(),
@@ -238,7 +245,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 onTap: () {
                   if (_formfield.currentState!.validate()) {
                     registerApp();
-                    Navigator.pushNamed(context, HomePages.route);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => chatPage(
+                                  urModels: UrModels(),
+                                )));
                   }
                 },
                 child: Container(
